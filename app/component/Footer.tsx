@@ -210,7 +210,7 @@ const Footer = () => {
                 <div className="flex flex-col items-center justify-between gap-5 py-7 text-center sm:flex-row sm:text-left">
 
                     <p className="text-sm text-neutral-content/50">
-                        © {new Date().getFullYear()} BookVibe. All rights reserved.
+                        © 2026 BookVibe. All rights reserved.
                     </p>
 
                     <p className="flex items-center gap-1.5 text-sm text-neutral-content/50">
