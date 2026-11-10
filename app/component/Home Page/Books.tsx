@@ -1,8 +1,5 @@
-
-import React, { Suspense } from "react";
 import { IBook } from "@/app/Type";
 import BookSmallCard from "./BookSmallCard";
-import BooksSkeleton from "../BookSkeleton";
 
 // Load books data
 const getData = async (): Promise<IBook[]> => {
@@ -43,14 +40,11 @@ const Books = async () => {
             </div>
 
             {/* Books Grid */}
-
-            <Suspense fallback={<BooksSkeleton></BooksSkeleton>}>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
-                    {books.slice(0, 9).map((book) => (
-                        <BookSmallCard key={book.bookId} book={book} />
-                    ))}
-                </div>
-            </Suspense>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
+                {books.slice(0, 9).map((book) => (
+                    <BookSmallCard key={book.bookId} book={book} />
+                ))}
+            </div>
 
             {/* Empty State */}
             {books.length === 0 && (
