@@ -1,17 +1,18 @@
 
-import React from "react";
+import React, { Suspense } from "react";
 import { IBook } from "@/app/Type";
 import BookSmallCard from "./BookSmallCard";
+import BooksSkeleton from "../BookSkeleton";
 
 // Load books data
 const getData = async (): Promise<IBook[]> => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
-
-    if (!res.ok) {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+        return res.json();
+    } catch {
         throw new Error("Failed to fetch books data");
     }
 
-    return res.json();
 };
 
 const Books = async () => {
@@ -42,11 +43,15 @@ const Books = async () => {
             </div>
 
             {/* Books Grid */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
-                {books.slice(0, 9).map((book) => (
-                    <BookSmallCard key={book.bookId} book={book} />
-                ))}
-            </div>
+
+            <Suspense fallback={<BooksSkeleton></BooksSkeleton>}>
+
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
+                    {books.slice(0, 9).map((book) => (
+                        <BookSmallCard key={book.bookId} book={book} />
+                    ))}
+                </div>
+            </Suspense>
 
             {/* Empty State */}
             {books.length === 0 && (
