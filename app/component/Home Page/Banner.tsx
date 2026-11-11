@@ -1,5 +1,6 @@
 import Image from "next/image";
 import bannerImg from "@/assets/hero_img.jpg";
+import Link from "next/link";
 
 export default function Banner() {
     return (
@@ -22,15 +23,15 @@ export default function Banner() {
                             great read. Every book has a new story waiting for you.
                         </p>
 
-                        <a
-                            href="#book-list"
+                        <Link
+                            href="/books"
                             className="btn mt-7 rounded-xl border-none bg-orange-500 px-8 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-orange-600 hover:shadow-xl"
                         >
                             View the List
                             <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
                                 →
                             </span>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Banner Image */}
