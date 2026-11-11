@@ -1,19 +1,9 @@
 import { IBook } from "@/app/Type";
 import BookSmallCard from "./BookSmallCard";
-import { cacheLife } from "next/cache";
-import booksData from "@/public/booksData.json";
-
-// Load books data
-const getData = async (): Promise<IBook[]> => {
-    "use cache";
-
-    cacheLife("hours");
-
-    return booksData;
-};
+import { fetchBooks } from "@/app/lib/books";
 
 const Books = async () => {
-    const books: IBook[] = await getData();
+    const books: IBook[] = await fetchBooks();
 
     return (
         <section className="container mx-auto my-16 px-4 sm:my-20 lg:my-24">
