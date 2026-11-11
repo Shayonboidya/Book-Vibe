@@ -1,15 +1,22 @@
 import { IBook } from "@/app/Type";
 import BookSmallCard from "./BookSmallCard";
+import { cacheLife } from "next/cache";
 
 // Load books data
 const getData = async (): Promise<IBook[]> => {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
-        return res.json();
-    } catch {
+    "use cache";
+
+    cacheLife("hours");
+
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`
+    );
+
+    if (!res.ok) {
         throw new Error("Failed to fetch books data");
     }
 
+    return res.json();
 };
 
 const Books = async () => {
