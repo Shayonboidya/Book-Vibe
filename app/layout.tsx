@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBer from "./component/NavBer";
 import BooksProvider from "@/context/BooksContext";
 import { ToastContainer } from "react-toastify";
 import Footer from "./component/Footer";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
     title: "Book Vibe",
@@ -26,7 +15,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <html
             lang="en"
             // data-theme="dark"
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+            className="h-full antialiased"
         >
             <body className="min-h-full flex flex-col">
                 <BooksProvider>

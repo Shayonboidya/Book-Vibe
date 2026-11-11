@@ -1,6 +1,7 @@
 import { IBook } from "@/app/Type";
 import BookSmallCard from "./BookSmallCard";
 import { cacheLife } from "next/cache";
+import booksData from "@/public/booksData.json";
 
 // Load books data
 const getData = async (): Promise<IBook[]> => {
@@ -8,15 +9,7 @@ const getData = async (): Promise<IBook[]> => {
 
     cacheLife("hours");
 
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`
-    );
-
-    if (!res.ok) {
-        throw new Error("Failed to fetch books data");
-    }
-
-    return res.json();
+    return booksData;
 };
 
 const Books = async () => {
